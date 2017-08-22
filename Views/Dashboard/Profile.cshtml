@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<nav>
+  <a asp-controller="Dashboard" asp-action="Index">Bright Ideas</a>
+  <a asp-controller="Login" asp-action="Logout">Logout</a>
+</nav>
+<hr>
+
+<dl>
+  <dt>Name:</dt>
+  <dd>@ViewBag.ThisUser.Name</dd>
+  <dt>Alias:</dt>
+  <dd>@ViewBag.ThisUser.Alias</dd>
+  <dt>Email:</dt>
+  <dd>@ViewBag.ThisUser.Email</dd>
+  <hr>
+  <dt>Total Number of Posts:</dt>
+  <dd>@ViewBag.PostCount</dd>
+  <dt>Total Number of Likes:</dt>
+  <dd>@ViewBag.LikeCount</dd>
+</dl>

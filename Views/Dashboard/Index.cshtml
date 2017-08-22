@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Bright Ideas";
+}
+
+@model niner.Models.Post
+
+<h1>Hello, @ViewBag.LoggedUser.Alias!</h1>
+<p><a asp-controller="Login" asp-action="Logout">Logout</a></p>
+<hr>
+
+<form asp-controller="Dashboard" asp-action="AddPost" method="POST">
+  <textarea cols="100" rows="3" asp-for="Content" placeholder="Post something witty here..."></textarea>
+  <p><button>Idea!</button></p>
+</form>
+
+@foreach (var post in ViewBag.AllPosts)
+{
+  <hr>
+  <p><a asp-controller="Dashboard" asp-action="Profile" asp-route-ThisUserId="@post.UserId">@post.User.Alias</a> says:</p>
+  <p class="border-1">@post.Content</p>
+  <p><a asp-controller="Dashboard" asp-action="AddLike" asp-route-LoggedUserId="@ViewBag.LoggedUser.UserId" asp-route-PostId="@post.PostId">
+    Like
+    </a>
+  </p>
+  <p><a asp-controller="Dashboard" asp-action="LikeStatus" asp-route-PostId="@post.PostId">@post.Likes.Count people</a> like this.</p>
+  @if (post.UserId == ViewBag.LoggedUser.UserId)
+  {
+    <p><a asp-controller="Dashboard" asp-action="Delete" asp-route-PostId="post.PostId">Delete this idea.</a></p>
+  }
+}

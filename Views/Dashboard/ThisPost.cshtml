@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<nav>
+  <a asp-controller="Dashboard" asp-action="Index">Bright Ideas</a>
+  <a asp-controller="Login" asp-action="Logout">Logout</a>
+</nav>
+<hr>
+
+<p><a asp-controller="Dashboard" asp-action="Profile" asp-route-ThisUserId="@ViewBag.ThisPost.UserId">@ViewBag.ThisPost.User.Alias</a> says:</p>
+  <p class="border-1">@ViewBag.ThisPost.Content</p>
+
+<hr>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>Alias</td>
+      <td>Name</td>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var like in ViewBag.ThisPost.Likes)
+    {
+      <tr>
+        <td><a asp-controller="Dashboard" asp-action="Profile" asp-route-ThisUserId="@like.UserId">@like.User.Alias</a></td>
+        <td>@like.User.Name</td>
+      </tr>
+    }
+  </tbody>
+</table>

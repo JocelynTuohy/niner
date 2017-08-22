@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Login or Register";
+}
+
+@model niner.Models.RegisterViewModel
+
+<form action="Login" method="post">
+    <fieldset>
+        <legend>Login</legend>
+        <p>
+            <label for="LogEmail">Email</label>
+            <input type="text" name="LogEmail" id="LogEmail"/>
+        </p>
+        <p>
+            <label for="LogPassword">Password</label>
+            <input type="password" name="LogPassword" id="LogPassword"/>
+        </p>
+        <button>Login</button>
+    </fieldset>
+</form>
+
+<form asp-controller="Login" asp-action="Register" method="post">
+    <fieldset>
+        <legend>Registration</legend>
+        <p>
+            <span asp-validation-for="Alias"></span>
+            <label asp-for="Alias"></label>
+            <input asp-for="Alias">
+        </p>
+        <p>
+            <span asp-validation-for="Email"></span>
+            <label asp-for="Email"></label>
+            <input asp-for="Email">
+        </p>
+        <p>
+            <span asp-validation-for="Name"></span>
+            <label asp-for="Name"></label>
+            <input asp-for="Name">
+        </p>
+        <p>
+            <span asp-validation-for="Password"></span>
+            <label asp-for="Password"></label>
+            <input asp-for="Password">
+        </p>
+        <p>*Password should be at least 8 characters.
+        <p>
+            <span asp-validation-for="Confirm"></span>
+            <label asp-for="Confirm"></label>
+            <input asp-for="Confirm">
+        </p>
+        <button>Register</button>
+    </fieldset>
+</form>
+
+@if (ViewBag.message != null)
+{
+    <p>@ViewBag.message</p>
+}
